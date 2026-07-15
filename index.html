@@ -100,6 +100,50 @@
     max-width: 1180px;
     margin: 0 auto;
     position: relative;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero-text { min-width: 0; }
+
+  /* ---- IMAGE UPLOAD SLOT ----
+     Replace the src below with your own image path/URL to swap it out. */
+  .hero-photo {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border: 1px solid rgba(242,240,233,0.15);
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%) contrast(1.05);
+    transition: filter 0.4s ease, transform 0.5s ease;
+  }
+
+  .hero-photo:hover img {
+    filter: grayscale(0%) contrast(1.05);
+    transform: scale(1.03);
+  }
+
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    box-shadow: inset 0 0 0 1px rgba(214,255,63,0.4);
+    pointer-events: none;
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-photo { order: -1; max-width: 280px; }
   }
 
   .hero-eyebrow {
@@ -460,13 +504,18 @@
 </header>
 
 <section class="hero">
-  <div class="hero-eyebrow">Available for new work — Q3 2026</div>
-  <h1>Identity systems <em>for</em> brands that mean it.</h1>
-  <p class="hero-sub">I'm a brand and visual identity designer working with founders who need their company to look as considered as it is. Logos, type systems, packaging, and the rules that hold it all together.</p>
-  <div class="hero-meta">
-    <div>Based in<strong>Dhaka, remote worldwide</strong></div>
-    <div>Experience<strong>7 years, 40+ brands</strong></div>
-    <div>Focus<strong>Identity · Type · Packaging</strong></div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Available for new work — Q3 2026</div>
+    <h1>Identity systems <em>for</em> brands that mean it.</h1>
+    <p class="hero-sub">I'm a brand and visual identity designer working with founders who need their company to look as considered as it is. Logos, type systems, packaging, and the rules that hold it all together.</p>
+    <div class="hero-meta">
+      <div>Based in<strong>Dhaka, remote worldwide</strong></div>
+      <div>Experience<strong>7 years, 40+ brands</strong></div>
+      <div>Focus<strong>Identity · Type · Packaging</strong></div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="https://res.cloudinary.com/htatxwat/image/upload/v1784125217/cld-sample-5.jpg" alt="Portrait">
   </div>
 </section>
 
