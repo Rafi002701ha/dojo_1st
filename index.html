@@ -1,14 +1,567 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian — Brand & Identity Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16152B;
+    --paper: #F2F0E9;
+    --accent: #D6FF3F;
+    --rose: #FF6B5E;
+    --muted: #6E6C87;
+    --line: rgba(22, 21, 43, 0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--ink); }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- NAV ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(22, 21, 43, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(242, 240, 233, 0.1);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links a {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    position: relative;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    border: 1px solid var(--paper);
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 110px 32px 90px;
+    max-width: 1180px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    line-height: 0.92;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+  }
+
+  .hero h1 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .hero h1 em:hover {
+    transform: skewX(-6deg) translateY(-4px);
+  }
+
+  .hero-sub {
+    margin-top: 32px;
+    max-width: 480px;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: rgba(242, 240, 233, 0.65);
+  }
+
+  .hero-meta {
+    margin-top: 56px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(242, 240, 233, 0.15);
+    padding-top: 28px;
+  }
+
+  .hero-meta div {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-meta strong {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    color: var(--paper);
+    text-transform: none;
+    margin-top: 6px;
+  }
+
+  /* ---------- MARQUEE (signature element) ---------- */
+  .marquee-band {
+    background: var(--accent);
+    color: var(--ink);
+    padding: 18px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: rotate(-1.2deg);
+    margin: 10px 0 -10px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    animation: scroll 26s linear infinite;
+  }
+
+  .marquee-track span {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .marquee-track span::after {
+    content: '✦';
+    font-size: 0.9rem;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---------- WORK ---------- */
+  .work {
+    padding: 130px 32px 60px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .section-head h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+  }
+
+  .section-head p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    max-width: 260px;
+    line-height: 1.6;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: rgba(242, 240, 233, 0.12);
+  }
+
+  .work-card {
+    background: var(--ink);
+    padding: 40px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.4s ease;
+  }
+
+  .work-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--card-color, var(--rose));
+    transform: translateY(101%);
+    transition: transform 0.45s cubic-bezier(.65,0,.35,1);
+    z-index: 0;
+  }
+
+  .work-card:hover::before { transform: translateY(0); }
+
+  .work-card > * { position: relative; z-index: 1; }
+
+  .work-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.4s ease;
+  }
+
+  .work-card:hover .tag { color: rgba(22,21,43,0.6); }
+
+  .work-card h3 {
+    font-size: 1.9rem;
+    letter-spacing: -0.01em;
+    margin-top: auto;
+    transition: color 0.4s ease;
+  }
+
+  .work-card:hover h3 { color: var(--ink); }
+
+  .work-card .num {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 2.4rem;
+    color: rgba(242,240,233,0.15);
+    transition: color 0.4s ease;
+  }
+
+  .work-card:hover .num { color: rgba(22,21,43,0.25); }
+
+  /* ---------- APPROACH ---------- */
+  .approach {
+    padding: 130px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+  }
+
+  .approach h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .approach-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .approach-item {
+    padding: 28px 0;
+    border-top: 1px solid rgba(242,240,233,0.15);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+  }
+
+  .approach-item:last-child { border-bottom: 1px solid rgba(242,240,233,0.15); }
+
+  .approach-item .mark {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 1.3rem;
+  }
+
+  .approach-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .approach-item p {
+    color: rgba(242,240,233,0.6);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    padding: 140px 32px 160px;
+    max-width: 1180px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta h2 {
+    font-size: clamp(2.2rem, 7vw, 5.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .cta h2 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .cta-btn {
+    display: inline-block;
+    margin-top: 44px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    padding: 18px 38px;
+    border-radius: 999px;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid rgba(242,240,233,0.12);
+    padding: 32px;
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 780px) {
+    .nav-links { display: none; }
+    .work-grid { grid-template-columns: 1fr; }
+    .approach { grid-template-columns: 1fr; gap: 40px; }
+    .hero-meta { gap: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+</style>
 </head>
 <body>
 
-    <!-- Your content goes here -->
-    <h1>Hello World!</h1>
+<header>
+  <nav>
+    <div class="logo">meridian<span>.</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Start a project</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Available for new work — Q3 2026</div>
+  <h1>Identity systems <em>for</em> brands that mean it.</h1>
+  <p class="hero-sub">I'm a brand and visual identity designer working with founders who need their company to look as considered as it is. Logos, type systems, packaging, and the rules that hold it all together.</p>
+  <div class="hero-meta">
+    <div>Based in<strong>Dhaka, remote worldwide</strong></div>
+    <div>Experience<strong>7 years, 40+ brands</strong></div>
+    <div>Focus<strong>Identity · Type · Packaging</strong></div>
+  </div>
+</section>
+
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span>Brand Identity</span>
+    <span>Type Design</span>
+    <span>Packaging</span>
+    <span>Art Direction</span>
+    <span>Design Systems</span>
+    <span>Brand Identity</span>
+    <span>Type Design</span>
+    <span>Packaging</span>
+    <span>Art Direction</span>
+    <span>Design Systems</span>
+  </div>
+</div>
+
+<section class="work" id="work">
+  <div class="section-head">
+    <h2>Selected work</h2>
+    <p>Six identities, six different problems — each one shaped by the brand it belongs to.</p>
+  </div>
+  <div class="work-grid">
+    <div class="work-card" style="--card-color:#FF6B5E">
+      <span class="tag">Beverage · Identity</span>
+      <span class="num">01</span>
+      <h3>Ferra Coffee Roasters</h3>
+    </div>
+    <div class="work-card" style="--card-color:#D6FF3F">
+      <span class="tag">Fintech · Type System</span>
+      <span class="num">02</span>
+      <h3>Northline Banking</h3>
+    </div>
+    <div class="work-card" style="--card-color:#8C8AFF">
+      <span class="tag">Publishing · Editorial</span>
+      <span class="num">03</span>
+      <h3>Paper Season Journal</h3>
+    </div>
+    <div class="work-card" style="--card-color:#FFC15E">
+      <span class="tag">Retail · Packaging</span>
+      <span class="num">04</span>
+      <h3>Kaso Ceramics</h3>
+    </div>
+    <div class="work-card" style="--card-color:#6EE7B7">
+      <span class="tag">Startup · Full Identity</span>
+      <span class="num">05</span>
+      <h3>Loop Mobility</h3>
+    </div>
+    <div class="work-card" style="--card-color:#FF9AC1">
+      <span class="tag">Nonprofit · Brand Refresh</span>
+      <span class="num">06</span>
+      <h3>Harbor Youth Fund</h3>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <h2>How a project actually runs</h2>
+  <div class="approach-list">
+    <div class="approach-item">
+      <span class="mark">a.</span>
+      <div>
+        <h4>Start with the problem, not the mood board</h4>
+        <p>Before any visuals, I want to understand what the brand needs to do in the world — who it needs to convince, and of what.</p>
+      </div>
+    </div>
+    <div class="approach-item">
+      <span class="mark">b.</span>
+      <div>
+        <h4>Design the system, not just the mark</h4>
+        <p>A logo is the smallest part of an identity. Type, color, spacing rules, and tone of voice are what make it usable by a whole team.</p>
+      </div>
+    </div>
+    <div class="approach-item">
+      <span class="mark">c.</span>
+      <div>
+        <h4>Hand off something you can actually run</h4>
+        <p>Every project ships with a working guideline doc and source files — not a PDF that gets opened once and forgotten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <h2>Got a brand that needs <em>a point of view?</em></h2>
+  <a href="mailto:hello@meridianstudio.example" class="cta-btn">hello@meridianstudio.example</a>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Meridian Studio © 2026</span>
+    <span>Dhaka, Bangladesh</span>
+  </div>
+</footer>
 
 </body>
 </html>
